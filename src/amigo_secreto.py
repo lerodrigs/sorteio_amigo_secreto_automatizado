@@ -65,17 +65,17 @@ def sortear(amigos: []):
     return sorteados
 
 def enviar_email(amigo, mensagem: str, server: smtplib.SMTP, email_disparador: str):    
-    emailBody = EmailMessage()
+    email_body = EmailMessage()
 
-    emailBody["From"] = email_disparador
+    email_body["From"] = email_disparador
 
-    emailBody["Subject"] = "Sorteio - Amigo Secreto"
+    email_body["Subject"] = "Sorteio - Amigo Secreto"
 
-    emailBody["To"] = amigo["sorteante"].email
+    email_body["To"] = amigo["sorteante"].email
    
-    emailBody.set_content(mensagem, subtype="html")
+    email_body.set_content(mensagem, subtype="html")
 
-    server.sendmail(email_disparador, amigo["sorteante"].email, msg= emailBody.as_string())                
+    server.sendmail(email_disparador, amigo["sorteante"].email, msg= email_body.as_string())                
 
     print("Email para {0} enviado!".format(str(amigo["sorteante"].nome).upper()))   
 
