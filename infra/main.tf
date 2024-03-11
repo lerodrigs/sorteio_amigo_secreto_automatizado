@@ -1,7 +1,6 @@
 
 resource "aws_iam_role" "lambda_role" {
     name   = "role_lambda_execution"
-    path = "iamsr/role/lambda_role.json"
     assume_role_policy = <<EOF
 {
     "Version": "2012-10-17",
@@ -44,7 +43,7 @@ resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
 data "archive_file" "zip_lambda" {
     type        = "zip"
     source_dir  = "${path.module}/python/"
-    output_path = "${path.module}/python/lambda_amigo_secreto.zip"
+    output_path = "${path.module}/python/lambda_amigo_secreto.zip"   
 }
 
 resource "aws_lambda_function" "lambda_amigo_secreto" {
