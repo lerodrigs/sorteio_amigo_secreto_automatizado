@@ -42,14 +42,14 @@ resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
 
 data "archive_file" "zip_lambda" {
     type        = "zip"
-    source_dir  = "${path.module}/python/"
-    output_path = "${path.module}/python/lambda_amigo_secreto.zip"   
+    source_dir  = "${path.module}/zip/"
+    output_path = "${path.module}/zip/lambda_amigo_secreto.zip"   
 }
 
 resource "aws_lambda_function" "lambda_amigo_secreto" {
   function_name         = "lambda_amigo_secreto"
   role                  = aws_iam_role.lambda_role.arn
-  filename              = "${path.module}/python/lambda_amigo_secreto.zip"
+  filename              = "${path.module}/zip/lambda_amigo_secreto.zip"
   handler               = "index.lambda_handler"
   runtime               = "python3.8"
   depends_on            = [aws_iam_role_policy_attachment.attach_iam_policy_to_iam_role]
